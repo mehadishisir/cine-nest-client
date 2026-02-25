@@ -7,6 +7,7 @@ import App from "./App.jsx";
 import Mainlayout from "./layout/Mainlayout.jsx";
 import Home from "./pages/Home.jsx";
 import Allmovies from "./pages/Allmovies.jsx";
+import AuthProvider from "./auth/AuthProvider.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +26,9 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
+  <AuthProvider>
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>
+  </AuthProvider>,
 );
