@@ -4,10 +4,23 @@ import "./index.css";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import App from "./App.jsx";
+import Mainlayout from "./layout/Mainlayout.jsx";
+import Home from "./pages/Home.jsx";
+import Allmovies from "./pages/Allmovies.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello World</div>,
+    element: <Mainlayout></Mainlayout>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/all-movies",
+        element: <Allmovies></Allmovies>,
+      },
+    ],
   },
 ]);
 
