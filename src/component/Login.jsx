@@ -1,25 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router";
-import { authContext } from "../auth/AuthProvider";
 
-const SignUp = () => {
-  const { signUp } = useContext(authContext);
+const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const photo = form.photo.value;
-    console.log(name, email, password, photo);
-    signUp(email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log(email, password);
   };
   return (
     <div className="contsiner mx-auto  ">
@@ -45,22 +33,10 @@ const SignUp = () => {
         CineNest
       </div>
       <p className="text-gray-400 text-center mb-6">
-        Create your account and start exploring movies
+        Login to your account and start exploring movies
       </p>
       <div className="w-full max-w-md  backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-gray-700 mx-auto">
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name */}
-          <div>
-            <label className="text-gray-300 text-sm">Full Name</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter your name"
-              className="w-full mt-1 p-3 bg-gray-800 text-white rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-              required
-            />
-          </div>
-
           {/* Email */}
           <div>
             <label className="text-gray-300 text-sm">Email</label>
@@ -68,17 +44,6 @@ const SignUp = () => {
               type="email"
               name="email"
               placeholder="Enter your email"
-              className="w-full mt-1 p-3 bg-gray-800 text-white rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-              required
-            />
-          </div>
-          {/* photo */}
-          <div>
-            <label className="text-gray-300 text-sm">Photo URL</label>
-            <input
-              type="text"
-              name="photo"
-              placeholder="Enter your photo URL"
               className="w-full mt-1 p-3 bg-gray-800 text-white rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
               required
             />
@@ -101,18 +66,18 @@ const SignUp = () => {
             type="submit"
             className="w-full py-3 mt-4 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-semibold text-lg transition duration-300 shadow-lg hover:shadow-blue-500/30"
           >
-            Sign Up
+            login
           </button>
         </form>
 
         {/* Extra */}
         <p className="text-gray-400 text-sm text-center mt-6">
-          Already have an account?{" "}
+          Don't have an account?{" "}
           <Link
-            to="/login"
+            to="/sign-up"
             className="text-blue-400 hover:underline cursor-pointer"
           >
-            Login
+            Sign Up
           </Link>
         </p>
       </div>
@@ -120,4 +85,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;
