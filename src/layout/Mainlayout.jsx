@@ -5,7 +5,9 @@ const Mainlayout = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <Outlet></Outlet>
+      <div className="container mx-auto py-5">
+        <Outlet></Outlet>
+      </div>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import Mainlayout from "./layout/Mainlayout.jsx";
 import Home from "./pages/Home.jsx";
 import Allmovies from "./pages/Allmovies.jsx";
 import AuthProvider from "./auth/AuthProvider.jsx";
+import SignUp from "./component/SignUp.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "sign-up",
+        element: <SignUp></SignUp>,
       },
       {
         path: "/all-movies",
