@@ -10,7 +10,7 @@ import Allmovies from "./pages/Allmovies.jsx";
 import AuthProvider from "./auth/AuthProvider.jsx";
 import SignUp from "./component/SignUp.jsx";
 import Login from "./component/Login.jsx";
-import MvoviesDetails from "./component/MvoviesDetails.jsx";
+import MoviesDetails from "./component/MoviesDetails.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/movies/:id",
-        element: <MvoviesDetails></MvoviesDetails>,
+        element: <MoviesDetails></MoviesDetails>,
       },
     ],
   },

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Navigate } from "react-router";
 import { Rating } from "react-simple-star-rating";
+import Swal from "sweetalert2";
 
 const MovieDetails = () => {
   const { id } = useParams();
+  const Navigate = useNavigate();
 
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,6 +23,38 @@ const MovieDetails = () => {
         setLoading(false);
       });
   }, [id]);
+  //   delete movie
+  const handleDelete = (id) => {
+    console.log("Delete Movie with ID:", id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // delete movie from database
+        fetch(`http://localhost:3000/movies/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              Navigate("/all-movies");
+            }
+          });
+      }
+    });
+  };
 
   if (loading)
     return <div className="text-center mt-10 text-gray-400">Loading...</div>;
@@ -68,15 +102,12 @@ const MovieDetails = () => {
       {/* Buttons */}
       <div className="flex flex-wrap gap-4 mt-6">
         <button
-          onClick={() => console.log("Delete Movie logic here")}
+          onClick={() => handleDelete(movie._id)}
           className="px-6 py-2 bg-gradient-to-r from-red-500 to-pink-600 hover:from-pink-600 hover:to-red-500 rounded-full font-semibold transition transform hover:scale-105 shadow-lg"
         >
           Delete Movie
         </button>
-        <button
-          onClick={() => console.log("Add to Favorites logic here")}
-          className="px-6 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-orange-500 hover:to-yellow-400 rounded-full font-semibold transition transform hover:scale-105 shadow-lg"
-        >
+        <button className="px-6 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-orange-500 hover:to-yellow-400 rounded-full font-semibold transition transform hover:scale-105 shadow-lg">
           Add to Favorites
         </button>
       </div>
