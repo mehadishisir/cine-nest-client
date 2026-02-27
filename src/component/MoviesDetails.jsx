@@ -55,6 +55,42 @@ const MovieDetails = () => {
       }
     });
   };
+  // handle favourite
+  const handleFavourite = (id) => {
+    console.log("Add to Favorites:");
+    fetch(`http://localhost:3000/favorites/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        movieId: movie._id,
+        title: movie.title,
+        poster: movie.poster,
+        rating: movie.rating,
+        genre: movie.genre,
+        duration: movie.duration,
+        releaseYear: movie.releaseYear,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Favourite added:", data);
+        Swal.fire({
+          title: "Added to Favorites!",
+          text: "The movie has been added to your favorites.",
+          icon: "success",
+        });
+      })
+      .catch((err) => {
+        console.error("Error adding to favorites:", err);
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to add the movie to favorites.",
+          icon: "error",
+        });
+      });
+  };
 
   if (loading)
     return <div className="text-center mt-10 text-gray-400">Loading...</div>;
@@ -107,7 +143,10 @@ const MovieDetails = () => {
         >
           Delete Movie
         </button>
-        <button className="px-6 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-orange-500 hover:to-yellow-400 rounded-full font-semibold transition transform hover:scale-105 shadow-lg">
+        <button
+          onClick={() => handleFavourite(movie._id)}
+          className="px-6 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-orange-500 hover:to-yellow-400 rounded-full font-semibold transition transform hover:scale-105 shadow-lg"
+        >
           Add to Favorites
         </button>
       </div>
