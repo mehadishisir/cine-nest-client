@@ -11,6 +11,7 @@ import AuthProvider from "./auth/AuthProvider.jsx";
 import SignUp from "./component/SignUp.jsx";
 import Login from "./component/Login.jsx";
 import MoviesDetails from "./component/MoviesDetails.jsx";
+import MyFavourite from "./pages/MyFavourite.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/movies/:id",
         element: <MoviesDetails></MoviesDetails>,
+      },
+      {
+        path: "/my-favourites/:userEmail",
+        element: <MyFavourite></MyFavourite>,
       },
     ],
   },
