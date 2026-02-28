@@ -16,6 +16,7 @@ const MovieDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         setMovie(data);
+        // console.log("Fetched Movie:", data);
         setLoading(false);
       })
       .catch((err) => {
@@ -56,15 +57,16 @@ const MovieDetails = () => {
     });
   };
   // handle favourite
-  const handleFavourite = (id) => {
-    console.log("Add to Favorites:");
-    fetch(`http://localhost:3000/favorites/${id}`, {
+  const handleFavourite = () => {
+    // console.log("Add to Favorites:");
+    fetch("http://localhost:3000/favourite", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         movieId: movie._id,
+        userEmail: movie.userEmail,
         title: movie.title,
         poster: movie.poster,
         rating: movie.rating,
