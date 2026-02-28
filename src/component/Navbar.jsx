@@ -80,7 +80,7 @@ const Navbar = () => {
             <NavLink to="/add-movie">Add Movie</NavLink>
           </li>
           <li>
-            <NavLink to="/my-favorites">My Favorites</NavLink>
+            <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
           </li>
           <li>
             <NavLink to="/blog">Blog</NavLink>
