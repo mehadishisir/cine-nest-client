@@ -48,23 +48,37 @@ const Navbar = () => {
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
-            <li>
-              <NavLink to="/all-movies">All Movies</NavLink>
-            </li>
+            {user ? (
+              <li>
+                <NavLink to="/all-movies">All Movies</NavLink>
+              </li>
+            ) : (
+              ""
+            )}
             <li>
               {user ? (
                 <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
               ) : (
                 ""
               )}
-              <NavLink to="/add-movie">Add Movie</NavLink>
             </li>
+            {user ? (
+              <li>
+                <NavLink to="/add-movie">Add Movie</NavLink>
+              </li>
+            ) : (
+              ""
+            )}
             {/* <li>
               <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
             </li> */}
-            <li>
-              <NavLink to="/blog">Blog</NavLink>
-            </li>
+            {user ? (
+              <li>
+                <NavLink to="/blog">Blog</NavLink>
+              </li>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
         <NavLink
@@ -93,18 +107,37 @@ const Navbar = () => {
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
+          {user ? (
+            <li>
+              <NavLink to="/all-movies">All Movies</NavLink>
+            </li>
+          ) : (
+            ""
+          )}
           <li>
-            <NavLink to="/all-movies">All Movies</NavLink>
+            {user ? (
+              <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
+            ) : (
+              ""
+            )}
           </li>
-          <li>
-            <NavLink to="/add-movie">Add Movie</NavLink>
-          </li>
-          <li>
-            <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
-          </li>
-          <li>
-            <NavLink to="/blog">Blog</NavLink>
-          </li>
+          {user ? (
+            <li>
+              <NavLink to="/add-movie">Add Movie</NavLink>
+            </li>
+          ) : (
+            ""
+          )}
+          {/* <li>
+              <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
+            </li> */}
+          {user ? (
+            <li>
+              <NavLink to="/blog">Blog</NavLink>
+            </li>
+          ) : (
+            ""
+          )}
         </ul>
       </div>
       <div className="navbar-end">
