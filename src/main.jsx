@@ -12,6 +12,8 @@ import SignUp from "./component/SignUp.jsx";
 import Login from "./component/Login.jsx";
 import MoviesDetails from "./component/MoviesDetails.jsx";
 import MyFavourite from "./pages/MyFavourite.jsx";
+import AddMovie from "./pages/AddMovie.jsx";
+import { Toaster } from "react-hot-toast";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>,
+      },
+      {
+        path: "/add-movie",
+        element: <AddMovie></AddMovie>,
       },
       {
         path: "/all-movies",
@@ -48,6 +54,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <AuthProvider>
     <StrictMode>
+      <Toaster position="top-right" reverseOrder={false} />
       <RouterProvider router={router} />
     </StrictMode>
   </AuthProvider>,
