@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Rating } from "react-simple-star-rating";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 
 const AddMovie = () => {
-  const [rating, setRating] = React.useState(0);
+  const [rating, setRating] = useState(0);
 
   const handleRating = (rate) => {
     setRating(rate * 2);

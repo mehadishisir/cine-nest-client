@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { authContext } from "../auth/AuthProvider";
 
 const MyFavourite = () => {
+  const { user } = useContext(authContext);
+  console.log("Current User in MyFavourite:", user);
   const [favourites, setFavourites] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/favourite?email=admin@cinenest.com")
-      .then((res) => res.json())
-      .then((data) => setFavourites(data))
-      .catch((err) => console.error(err));
-  }, []);
+    if (user?.email) {
+      fetch(`http://localhost:3000/favourite?email=${user.email}`)
+        .then((res) => res.json())
+        .then((data) => setFavourites(data))
+        .catch((err) => console.error(err));
+    }
+  }, [user?.email]);
 
   const handleDelete = (id) => {
     Swal.fire({
