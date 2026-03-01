@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router";
+import { authContext } from "../auth/AuthProvider";
 
 const Login = () => {
+  const { signIn } = useContext(authContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error("Error signing in:", error);
+      });
   };
   return (
     <div className="contsiner mx-auto  ">

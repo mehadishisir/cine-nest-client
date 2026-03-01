@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
+import { authContext } from "../auth/AuthProvider";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase.init";
 
 const Navbar = () => {
+  const { user } = useContext(authContext);
+  const handleLogout = () => {
+    // Implement logout functionality here
+    console.log("Logout clicked");
+    return signOut(auth)
+      .then(() => {
+        console.log("User signed out successfully");
+      })
+      .catch((error) => {
+        console.error("Error signing out:", error);
+      });
+  };
   return (
     <div
       className="navbar  shadow-sm 
@@ -37,11 +52,16 @@ const Navbar = () => {
               <NavLink to="/all-movies">All Movies</NavLink>
             </li>
             <li>
+              {user ? (
+                <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
+              ) : (
+                ""
+              )}
               <NavLink to="/add-movie">Add Movie</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/blog">Blog</NavLink>
             </li>
@@ -88,7 +108,13 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Login</a>
+        {user ? (
+          <Link onClick={handleLogout} to="/login">
+            LogOut
+          </Link>
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
       </div>
     </div>
   );
