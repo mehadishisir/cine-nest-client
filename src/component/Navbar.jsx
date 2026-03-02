@@ -54,11 +54,9 @@ const Navbar = () => {
               <NavLink to="/all-movies">All Movies</NavLink>
             </li>
             <li>
-              {user ? (
-                <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
-              ) : (
-                ""
-              )}
+              <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
+            </li>
+            <li>
               <NavLink to="/add-movie">Add Movie</NavLink>
             </li>
 

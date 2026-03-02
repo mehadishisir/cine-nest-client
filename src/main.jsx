@@ -15,6 +15,7 @@ import MyFavourite from "./pages/MyFavourite.jsx";
 import AddMovie from "./pages/AddMovie.jsx";
 import { Toaster } from "react-hot-toast";
 import PrivateRoute from "./auth/PrivateRoute.jsx";
+import Blog from "./component/Blog.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
             <MyFavourite></MyFavourite>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "blog",
+        element: <Blog></Blog>,
       },
     ],
   },
