@@ -1,8 +1,11 @@
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { authContext } from "../auth/AuthProvider";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const { signUp } = useContext(authContext);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +19,11 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        if (user) {
+          navigate("/", { replace: true });
+        }
+        toast.success("Account created successfully");
+        form.reset();
       })
       .catch((error) => {
         console.log(error);

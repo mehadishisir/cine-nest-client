@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router";
 import { authContext } from "../auth/AuthProvider";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase.init";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user } = useContext(authContext);
@@ -12,6 +13,7 @@ const Navbar = () => {
     return signOut(auth)
       .then(() => {
         console.log("User signed out successfully");
+        toast.success("Logged out successfully");
       })
       .catch((error) => {
         console.error("Error signing out:", error);
@@ -48,37 +50,21 @@ const Navbar = () => {
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
-            {user ? (
-              <li>
-                <NavLink to="/all-movies">All Movies</NavLink>
-              </li>
-            ) : (
-              ""
-            )}
+            <li>
+              <NavLink to="/all-movies">All Movies</NavLink>
+            </li>
             <li>
               {user ? (
                 <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
               ) : (
                 ""
               )}
+              <NavLink to="/add-movie">Add Movie</NavLink>
             </li>
-            {user ? (
-              <li>
-                <NavLink to="/add-movie">Add Movie</NavLink>
-              </li>
-            ) : (
-              ""
-            )}
-            {/* <li>
-              <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
-            </li> */}
-            {user ? (
-              <li>
-                <NavLink to="/blog">Blog</NavLink>
-              </li>
-            ) : (
-              ""
-            )}
+
+            <li>
+              <NavLink to="/blog">Blog</NavLink>
+            </li>
           </ul>
         </div>
         <NavLink
@@ -107,37 +93,18 @@ const Navbar = () => {
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
-          {user ? (
-            <li>
-              <NavLink to="/all-movies">All Movies</NavLink>
-            </li>
-          ) : (
-            ""
-          )}
           <li>
-            {user ? (
-              <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
-            ) : (
-              ""
-            )}
+            <NavLink to="/all-movies">All Movies</NavLink>
           </li>
-          {user ? (
-            <li>
-              <NavLink to="/add-movie">Add Movie</NavLink>
-            </li>
-          ) : (
-            ""
-          )}
-          {/* <li>
-              <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
-            </li> */}
-          {user ? (
-            <li>
-              <NavLink to="/blog">Blog</NavLink>
-            </li>
-          ) : (
-            ""
-          )}
+          <li>
+            <NavLink to="/add-movie">Add Movie</NavLink>
+          </li>
+          <li>
+            <NavLink to="/my-favourites/:userEmail">My Favorites</NavLink>
+          </li>
+          <li>
+            <NavLink to="/blog">Blog</NavLink>
+          </li>
         </ul>
       </div>
       <div className="navbar-end">

@@ -14,6 +14,7 @@ import MoviesDetails from "./component/MoviesDetails.jsx";
 import MyFavourite from "./pages/MyFavourite.jsx";
 import AddMovie from "./pages/AddMovie.jsx";
 import { Toaster } from "react-hot-toast";
+import PrivateRoute from "./auth/PrivateRoute.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,7 +42,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/movies/:id",
-        element: <MoviesDetails></MoviesDetails>,
+        element: (
+          <PrivateRoute>
+            <MoviesDetails></MoviesDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-favourites/:userEmail",
@@ -52,10 +57,10 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <AuthProvider>
-    <StrictMode>
-      <Toaster position="top-right" reverseOrder={false} />
+  <StrictMode>
+    <AuthProvider>
+      <Toaster position="top-center" reverseOrder={false} />
       <RouterProvider router={router} />
-    </StrictMode>
-  </AuthProvider>,
+    </AuthProvider>
+  </StrictMode>,
 );
