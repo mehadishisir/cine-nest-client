@@ -16,6 +16,7 @@ import AddMovie from "./pages/AddMovie.jsx";
 import { Toaster } from "react-hot-toast";
 import PrivateRoute from "./auth/PrivateRoute.jsx";
 import Blog from "./component/Blog.jsx";
+import NotFound from "./component/NotFound.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "blog",
         element: <Blog></Blog>,
+      },
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
       },
     ],
   },
