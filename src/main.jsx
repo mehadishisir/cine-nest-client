@@ -34,7 +34,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-movie",
-        element: <AddMovie></AddMovie>,
+        element: (
+          <PrivateRoute>
+            <AddMovie></AddMovie>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/all-movies",
@@ -50,7 +54,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-favourites/:userEmail",
-        element: <MyFavourite></MyFavourite>,
+        element: (
+          <PrivateRoute>
+            <MyFavourite></MyFavourite>
+          </PrivateRoute>
+        ),
       },
     ],
   },

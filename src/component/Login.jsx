@@ -7,7 +7,8 @@ const Login = () => {
   const { signIn } = useContext(authContext);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.pathname);
+  console.log(location);
+  // console.log(location.pathname);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -19,7 +20,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         if (user) {
-          navigate(location.pathname ? location.pathname : "/", {
+          navigate(location.state ? location.state : "/", {
             replace: true,
           });
         }
