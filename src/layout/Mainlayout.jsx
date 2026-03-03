@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import Navbar from "../component/Navbar";
+import Footer from "../component/Footer";
 
 const Mainlayout = () => {
   return (
@@ -8,6 +9,7 @@ const Mainlayout = () => {
       <div className="container mx-auto py-5">
         <Outlet></Outlet>
       </div>
+      <Footer></Footer>
     </div>
   );
 };
